@@ -1,29 +1,29 @@
-import requests
-from lxml import etree
+import jieba
+import sqlite3
 
-class ArticleAnalyse():
-    Link = ''
-    File = ''
+def analyseText(fileLocation):
+    with open(fileLocation, encoding="utf-8") as f:
+        text = f.read()
+        text = " ".join(jieba.cut(text)).split()
+        print(text)
 
-    def __init__(self, link, file):
-        self.Link = "https://kns.cnki.net"+link
-        self.File = file
+def statWords(fileLocation):
+    with open("stopwords.txt", encoding='utf-8') as stopwordFile:
+        stopwords = stopwordFile.read().split('\n')
+    with open(fileLocation, encoding='utf-8') as f:
+        text = f.read().split()
 
+        wordSQL = sqlite3.connect('WordSQL')
+        wordSQLCursor = wordSQL.cursor()
+        existList = ''
 
-    def crawl(self):
-        return requests.get(self.Link).text
+        for word in text:
+            if (word not in stopwords) and (word.__len__()>1):
+                if word not in existList:
+                    existList = existList + word
+                    wordSQLCursor.execute("insert into words (word, seq) VALUES ('{}', 1)".format(word))
+                else:
+                    wordSQLCursor.execute("update words set seq = seq + 1 where word = '{}'".format(word))
 
-    def getSummary(self):
-        html = self.crawl()
-
-        selector = etree.HTML(html)
-        link = selector.xpath("//span[@id='ChDivSummary']")
-        if len(link)>0:
-            return link[0].text
-        else:
-            return ''
-
-    def writeFile(self):
-        print("Write File.")
-        self.File.write(self.getSummary())
-
+        wordSQL.commit()
+        wordSQL.close()
