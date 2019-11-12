@@ -15,4 +15,4 @@ infoFrame <- fetch(result)
 
 my_graph <- wordcloud2(infoFrame)
 
-saveWidget(my_graph,args[2],selfcontained = F) #先保存为网页格式
+saveWidget(my_graph,args[2],selfcontained = F)
