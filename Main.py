@@ -1,12 +1,5 @@
-from Search import Search
-from Article import ArticleAnalyse
-import Analyse
+from Analyse import Analyser
 
-search = Search()
-links = search.getEnableLink(1000)
-with open("Summary",'a+',encoding='utf-8') as f:
-    for i in links:
-        analyse = ArticleAnalyse(i,f)
-        analyse.writeFile()
+an = Analyser("Summary_Fans.txt", "Fans_words.txt", "FansSql", "FansCloud.html")
 
-Analyse.statWords("Summary_Fans.txt _jieba.txt")
+an.analyse("(seq > 15 and seq < 1000)")

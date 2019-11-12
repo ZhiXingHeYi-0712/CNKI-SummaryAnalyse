@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="WordSQL" uuid="995a6b32-2eae-4338-b1d1-3bfa8527424c">
+    <data-source source="LOCAL" name="FansSql" uuid="f0dd6f64-7931-4bbc-b4c8-e04fe46142e6">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/WordSQL</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/FansSql</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

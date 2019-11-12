@@ -2,9 +2,10 @@ import requests
 from lxml import etree
 
 
-class ArticleAnalyse:
+class Article:
     Link = ''
     File = ''
+    Output = ''
 
     def __init__(self, link, file):
         self.Link = "https://kns.cnki.net" + link
@@ -25,4 +26,7 @@ class ArticleAnalyse:
 
     def writeFile(self):
         print("Write File.")
-        self.File.write(self.getSummary())
+        self.File.write(self.Output)
+
+    def addOutput(self):
+        self.Output = self.Output + self.getSummary()
