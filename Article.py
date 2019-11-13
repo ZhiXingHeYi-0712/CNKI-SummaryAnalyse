@@ -4,14 +4,12 @@ from lxml import etree
 
 class Article:
     Link = ''
-    File = ''
-    Output = ''
 
-    def __init__(self, link, file):
+    def __init__(self, link):
         self.Link = "https://kns.cnki.net" + link
-        self.File = file
 
     def crawl(self):
+        print("Crawl Article")
         return requests.get(self.Link).text
 
     def getSummary(self):
@@ -23,10 +21,3 @@ class Article:
             return link[0].text
         else:
             return ''
-
-    def writeFile(self):
-        print("Write File.")
-        self.File.write(self.Output)
-
-    def addOutput(self):
-        self.Output = self.Output + self.getSummary()

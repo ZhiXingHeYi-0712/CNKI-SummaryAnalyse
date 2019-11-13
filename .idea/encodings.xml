@@ -2,5 +2,6 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/FansSql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Summary_Nation.txt" charset="GBK" />
   </component>
 </project>
